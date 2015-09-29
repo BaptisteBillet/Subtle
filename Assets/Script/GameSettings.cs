@@ -15,8 +15,6 @@ public class GameSettings : MonoBehaviour {
 		}
 	}
 
-
-
 	void Awake()
 	{
 		if (s_Instance == null)
@@ -28,20 +26,22 @@ public class GameSettings : MonoBehaviour {
 	#region members
 
 		//All variables
-		[Header("Variables")]
+		[Header("Parameters")]
 		public int m_NumberOfPlayers;
 		public int m_MinNumberOfPlayers;
 		public int m_MaxNumberOfPlayers;
 		public int m_NumberOfActualPlayer;
-		[Header(" ")]
+        [Space(10)]
+		[Header("Round")]
 		public int m_NumberOfRound;
 		public int m_ActualRoundNumber;
-		[Header(" ")]
+        [Space(10)]
+        [Header(" ")]
 		public int m_SpyPlayer;
-		public bool m_IsOkForChange;	
+		public bool m_IsOkForChange;
 
-
-		[Header(" ")]
+        [Space(10)]
+        [Header(" ")]
 
 		#region PanelSettings
 		public GameObject m_PanelSettings;
@@ -90,7 +90,7 @@ public class GameSettings : MonoBehaviour {
 		m_NumberOfPlayers=m_MinNumberOfPlayers;
 		m_TextNumberOfPlayers.text = m_NumberOfPlayers.ToString();
 		m_PanelSettings.SetActive(true);
-		m_PanelGame.SetActive(false);
+		//m_PanelGame.SetActive(false);
 		m_PanelWaitFor.SetActive(false);
 		m_PanelAttribution.SetActive(false);
 
@@ -114,6 +114,7 @@ public class GameSettings : MonoBehaviour {
 		#endregion
 	}
 
+    //For the buttons of Settings
 	public void ChangeNumbersOfPlayer(bool IsAddingPlayer)
 	{
 		if (IsAddingPlayer && m_NumberOfPlayers < m_MaxNumberOfPlayers)
@@ -164,6 +165,8 @@ public class GameSettings : MonoBehaviour {
 				m_PanelAttribution.SetActive(true);
 				m_TextPlayerAttribution.text = "Player " + m_NumberOfActualPlayer.ToString();
 				m_NumberOfActualPlayer++;
+
+                
 				if (m_NumberOfActualPlayer == m_SpyPlayer)
 				{
 					m_TextClue.text = themes[Random.Range(0, themes.Count)].GetName();
